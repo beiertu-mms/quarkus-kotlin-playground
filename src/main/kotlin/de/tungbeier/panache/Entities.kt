@@ -1,5 +1,6 @@
 package de.tungbeier.panache
 
+/*
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
@@ -41,7 +42,7 @@ class Post() {
     )
     private val _comments: MutableList<PostComment> = mutableListOf()
 
-    val comments: List<PostComment> get() = _comments.toList()
+    val comments: List<PostComment> get() = _comments
 
     fun addComment(comment: PostComment) {
         _comments.add(comment)
@@ -90,3 +91,4 @@ class PostComment() {
 
     override fun hashCode(): Int = Objects.hash(id)
 }
+*/
