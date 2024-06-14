@@ -20,7 +20,7 @@ jobs:
         cache: maven
 
     - name: Verify
-      run: ./mvnw -B clean verify
+      run: ./mvnw -B -ntp clean verify
 
     - name: Publish Test Report
       if: ${{ failure() }}
