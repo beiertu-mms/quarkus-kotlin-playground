@@ -1,5 +1,6 @@
 package de.tungbeier.panache
 
+import io.quarkus.logging.Log
 import io.quarkus.test.TestReactiveTransaction
 import io.quarkus.test.common.QuarkusTestResource
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager
@@ -11,6 +12,7 @@ import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.utility.DockerImageName
 import strikt.api.expectThat
 import strikt.assertions.all
+import strikt.assertions.first
 import strikt.assertions.hasSize
 import strikt.assertions.isA
 import strikt.assertions.isContainedIn
@@ -32,19 +34,37 @@ class PostServiceTest {
 
         asserter
             .assertThat(
-                { service.register(post) },
-                { expectThat(it).isA<RegisterResult.Success>().get(RegisterResult.Success::post) isEqualTo post }
+                {
+                    Log.info("verify that post can be registered")
+                    service.register(post)
+                },
+                {
+                    expectThat(it).isA<RegisterResult.Success>().get(RegisterResult.Success::post) isEqualTo post
+                }
             )
             .assertThat(
-                { service.findFirstPostByTitle(title) },
-                { expectThat(it).isA<SearchResult.Found>() }
+                {
+                    Log.info("verify that post can be found")
+                    service.findFirstPostByTitle(title)
+                },
+                {
+                    expectThat(it).isA<SearchResult.Found>()
+                }
             )
             .assertThat(
-                { service.register(post.apply { addComment(PostComment("not recommended")) }) },
-                { expectThat(it).isA<RegisterResult.Success>() }
+                {
+                    Log.info("verify that a new comment can be added to the post")
+                    service.register(post.apply { addComment(PostComment("not recommended")) })
+                },
+                {
+                    expectThat(it).isA<RegisterResult.Success>()
+                }
             )
             .assertThat(
-                { service.findFirstPostByTitle(title) },
+                {
+                    Log.info("verify that post is persisted with both comments")
+                    service.findFirstPostByTitle(title)
+                },
                 {
                     expectThat(it).isA<SearchResult.Found>().get(SearchResult.Found::post).and {
                         get(Post::title).isEqualTo(title)
@@ -52,6 +72,17 @@ class PostServiceTest {
                             get(PostComment::review) isContainedIn listOf("very short post", "not recommended")
                         }
                     }
+                }
+            )
+            .assertThat(
+                {
+                    Log.info("verify that post comment can be removed")
+                    service.register(post.apply { removeComment(post.comments.last()) })
+                },
+                {
+                    expectThat(it).isA<RegisterResult.Success>().get(RegisterResult.Success::post)
+                        .get(Post::comments).hasSize(1).first()
+                        .get(PostComment::review) isEqualTo "very short post"
                 }
             )
     }

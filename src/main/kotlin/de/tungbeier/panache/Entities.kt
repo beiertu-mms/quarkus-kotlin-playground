@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.NamedQuery
 import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
+import java.util.Objects
 
 @Entity
 @Table(name = "post")
@@ -51,6 +52,14 @@ class Post() {
         _comments.remove(comment)
         comment.post = null
     }
+
+    override fun equals(other: Any?): Boolean = when {
+        this === other -> true
+        other !is Post -> false
+        else -> id != null && id == other.id
+    }
+
+    override fun hashCode(): Int = Objects.hash(id)
 }
 
 @Entity
@@ -79,7 +88,5 @@ class PostComment() {
         else -> id != null && id == other.id
     }
 
-    override fun hashCode(): Int {
-        return javaClass.hashCode()
-    }
+    override fun hashCode(): Int = Objects.hash(id)
 }
