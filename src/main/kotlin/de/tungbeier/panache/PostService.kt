@@ -1,10 +1,15 @@
 package de.tungbeier.panache
 
+/*
+import io.quarkus.hibernate.reactive.panache.PanacheRepository
 import io.quarkus.logging.Log
 import io.quarkus.panache.common.Parameters
 import io.smallrye.mutiny.Uni
 import jakarta.enterprise.context.ApplicationScoped
 import org.hibernate.exception.ConstraintViolationException
+
+@ApplicationScoped
+class PostRepository : PanacheRepository<Post>
 
 @ApplicationScoped
 class PostService(private val repo: PostRepository) {
@@ -45,3 +50,4 @@ sealed class SearchResult {
     class Found(val post: Post) : SearchResult()
     class NotFound(val cause: Throwable) : SearchResult()
 }
+*/
