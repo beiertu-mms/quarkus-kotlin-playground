@@ -3,8 +3,7 @@ name: Dependabot CI
 on:
   pull_request_target:
 
-permissions:
-  pull-requests: write
+permissions: write-all
 
 jobs:
   build:
