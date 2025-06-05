@@ -130,6 +130,13 @@
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
+                    <!-- the add-opens is here to allow to clear the propertiesCache in com.sun.naming.internal.ResourceManager -->Add commentMore actions
+                    <!-- the add-opens java.naming/com.sun.naming.internal is here to allow to clear the propertiesCache in com.sun.naming.internal.ResourceManager -->
+                    <!-- the add-opens java.base/java.lang=ALL-UNNAMED is here for org.jboss.JDKSpecific.ThreadAccess.clearThreadLocals() -->
+                    <argLine>
+                        --add-opens java.naming/com.sun.naming.internal=ALL-UNNAMED
+                        --add-opens java.base/java.lang=ALL-UNNAMED
+                    </argLine>
                 </configuration>
             </plugin>
             <plugin>
