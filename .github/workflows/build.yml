@@ -24,10 +24,18 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - uses: actions/checkout@v4
+        with:
+          repository: smallrye/smallrye-config
+          path: smallrye-config
+
+      - run: |
+          mvn clean install -B -ntp -DskipTests -f smallrye-config/pom.xml
+
       - name: Verify
         run: |
           export RULESET_CUSTOMER_ORDER_EVENT_AND_CHANNELS_AT_0__CHANNELS=email,push
-          ./mvnw -B -ntp -Dquarkus.platform.version=${{ matrix.quarkus_version }} clean verify
+          ./mvnw clean verify -B -ntp -Dquarkus.platform.version=${{ matrix.quarkus_version }}
 
       - name: Publish Test Report
         if: ${{ failure() }}
