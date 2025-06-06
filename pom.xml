@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.tungbeier</groupId>
     <artifactId>quarkus-kotlin-playground</artifactId>
@@ -50,7 +52,7 @@
         <!-- https://mvnrepository.com/artifact/io.smallrye.config/smallrye-config -->
         <dependency>
             <groupId>io.smallrye.config</groupId>
-            <artifactId>smallrye-config</artifactId>
+            <artifactId>smallrye-config-core</artifactId>
             <version>3.13.1-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -136,9 +138,12 @@
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
-                    <!-- the add-opens is here to allow to clear the propertiesCache in com.sun.naming.internal.ResourceManager -->Add commentMore actions
-                    <!-- the add-opens java.naming/com.sun.naming.internal is here to allow to clear the propertiesCache in com.sun.naming.internal.ResourceManager -->
-                    <!-- the add-opens java.base/java.lang=ALL-UNNAMED is here for org.jboss.JDKSpecific.ThreadAccess.clearThreadLocals() -->
+                    <!-- the add-opens is here to allow to clear the propertiesCache in
+                    com.sun.naming.internal.ResourceManager -->
+                    <!-- the add-opens java.naming/com.sun.naming.internal is here to allow to clear
+                    the propertiesCache in com.sun.naming.internal.ResourceManager -->
+                    <!-- the add-opens java.base/java.lang=ALL-UNNAMED is here for
+                    org.jboss.JDKSpecific.ThreadAccess.clearThreadLocals() -->
                     <argLine>
                         --add-opens java.naming/com.sun.naming.internal=ALL-UNNAMED
                         --add-opens java.base/java.lang=ALL-UNNAMED
@@ -158,7 +163,8 @@
                 </executions>
                 <configuration>
                     <systemPropertyVariables>
-                        <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                        <native.image.path>
+                            ${project.build.directory}/${project.build.finalName}-runner</native.image.path>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
