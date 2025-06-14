@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.tungbeier</groupId>
     <artifactId>quarkus-kotlin-playground</artifactId>
@@ -13,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>3.23.2</quarkus.platform.version>
+        <quarkus.platform.version>3.23.3</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.5.3</surefire-plugin.version>
     </properties>
@@ -130,9 +132,12 @@
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
-                    <!-- the add-opens is here to allow to clear the propertiesCache in com.sun.naming.internal.ResourceManager -->Add commentMore actions
-                    <!-- the add-opens java.naming/com.sun.naming.internal is here to allow to clear the propertiesCache in com.sun.naming.internal.ResourceManager -->
-                    <!-- the add-opens java.base/java.lang=ALL-UNNAMED is here for org.jboss.JDKSpecific.ThreadAccess.clearThreadLocals() -->
+                    <!-- the add-opens is here to allow to clear the propertiesCache in
+                    com.sun.naming.internal.ResourceManager -->
+                    <!-- the add-opens java.naming/com.sun.naming.internal is here to allow to clear
+                    the propertiesCache in com.sun.naming.internal.ResourceManager -->
+                    <!-- the add-opens java.base/java.lang=ALL-UNNAMED is here for
+                    org.jboss.JDKSpecific.ThreadAccess.clearThreadLocals() -->
                     <argLine>
                         --add-opens java.naming/com.sun.naming.internal=ALL-UNNAMED
                         --add-opens java.base/java.lang=ALL-UNNAMED
@@ -152,7 +157,8 @@
                 </executions>
                 <configuration>
                     <systemPropertyVariables>
-                        <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                        <native.image.path>
+                            ${project.build.directory}/${project.build.finalName}-runner</native.image.path>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
