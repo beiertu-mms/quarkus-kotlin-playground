@@ -94,7 +94,7 @@ class PostgresResource : QuarkusTestResourceLifecycleManager {
     private val databaseUser = "sarah"
     private val databasePassword = "connor"
 
-    private val postgres = PostgreSQLContainer(DockerImageName.parse("postgres:16-alpine"))
+    private val postgres = PostgreSQLContainer(DockerImageName.parse("postgres:18-alpine"))
         .withDatabaseName(databaseName)
         .withUsername(databaseUser)
         .withPassword(databasePassword)

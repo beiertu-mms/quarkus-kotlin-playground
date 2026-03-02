@@ -15,12 +15,13 @@ jobs:
 
       - uses: actions/setup-java@v5
         with:
-          java-version: '21'
+          java-version: '25'
           distribution: 'temurin'
           cache: maven
 
       - name: Verify
         run: |
+          export RULESET_CUSTOMER_ORDER_EVENT_AND_CHANNELS_AT_0__EVENT=created
           export RULESET_CUSTOMER_ORDER_EVENT_AND_CHANNELS_AT_0__CHANNELS=email,push
           ./mvnw clean verify -B -ntp
 
