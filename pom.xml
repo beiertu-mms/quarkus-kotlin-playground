@@ -51,7 +51,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-junit5</artifactId>
+            <artifactId>quarkus-junit</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -139,7 +139,7 @@
                     <!-- the add-opens java.base/java.lang=ALL-UNNAMED is here for
                     org.jboss.JDKSpecific.ThreadAccess.clearThreadLocals() -->
                     <argLine>
-                        --add-opens java.naming/com.sun.naming.internal=ALL-UNNAMED
+                        @{argLine} --add-opens java.naming/com.sun.naming.internal=ALL-UNNAMED
                         --add-opens java.base/java.lang=ALL-UNNAMED
                     </argLine>
                 </configuration>
@@ -162,6 +162,7 @@
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
+                    <argLine>@{argLine}</argLine>
                 </configuration>
             </plugin>
             <plugin>

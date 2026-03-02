@@ -1,7 +1,6 @@
 package de.tungbeier.panache
 
 import io.quarkus.logging.Log
-import io.quarkus.panache.common.Parameters
 import io.smallrye.mutiny.Uni
 import jakarta.enterprise.context.ApplicationScoped
 import org.hibernate.exception.ConstraintViolationException
@@ -23,7 +22,7 @@ class PostService(private val repo: PostRepository) {
         }
 
     fun findFirstPostByTitle(title: String): Uni<SearchResult> = repo
-        .find("#Post.findByTitle", Parameters.with(Post::title.name, title))
+        .find("#Post.findByTitle", mapOf(Post::title.name to title))
         .firstResult<Post>()
         .map {
             @Suppress("useless_cast")
