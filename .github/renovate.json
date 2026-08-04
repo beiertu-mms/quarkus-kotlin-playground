@@ -5,9 +5,10 @@
     ":disableRateLimiting"
   ],
   "enabledManagers": [
-    "docker.dockerfile",
-    "ci.github-actions",
-    "java.maven",
-    "java.maven-wrapper"
+    "regex",
+    "dockerfile",
+    "github-actions",
+    "maven",
+    "maven-wrapper"
   ]
 }
