@@ -5,7 +5,7 @@
     ":disableRateLimiting"
   ],
   "enabledManagers": [
-    "regex",
+    "custom.regex",
     "dockerfile",
     "github-actions",
     "maven",
