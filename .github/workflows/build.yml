@@ -27,7 +27,7 @@ jobs:
 
       - name: Publish Test Report
         if: ${{ failure() }}
-        uses: scacap/action-surefire-report@v1
+        uses: ScalableCapital/action-surefire-report@v2
         with:
           fail_if_no_tests: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
